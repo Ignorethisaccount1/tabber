@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Tabber Play for Free!</title>
+    <body>
+         <style>body {
+  overflow: hidden;
+}</style>
+  <label for="name">Username:</label>
+  <input type="text" id="name" name="name"><br><br>
+  <div style = "position:relative; left:550px; top:50px;">
+    <h1>Tabber</h1>
+    </div>
+    <div style = "position:relative; left:550px; top:50px;">
+       <button onclick = "window.location.href = 'tabberlocal.html';">play</button>
+           <button onclick = "window.location.href = 'tabbersettings.html';">settings</button>
+    </div>
+
+    <div style = "position:relative; left:550px; top:55px;">
+    <button onclick = "window.location.href = 'tabberhelp.html';">what is tabber?</button>
+    </div>
+
+
+    
+    </body>
+</html>

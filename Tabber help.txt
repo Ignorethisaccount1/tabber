@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Tabber play for Free!</title>
+  </head>
+  <body>
+    <button onclick = "window.location.href = 'tabbermainmenu.html';">back</button>
+    <h2>Did you seriously just click the help button? just play the game you will understand it quick enough.</h2>
+    
+  </body>
+</html>

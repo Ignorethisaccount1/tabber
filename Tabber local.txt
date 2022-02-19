@@ -1,0 +1,157 @@
+<html>
+<head>
+  <title>Tabber play for Free!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+
+</style>
+</head>
+<body onload="startGame()">
+   <button onclick = "window.location.href = 'tabbermainmenu.html';">quit</button>
+<div style = "position:relative; left:0px; top:100px;"><h2 id="redhealth">Red Health: 100</h2>
+
+  <label for="redstamina">Red Stamina:</label>
+<progress id="redstamina" value="100" max="100">100</progress>
+
+<label for="redattack">Red Attack:</label>
+<progress id="redattack" value="100" max="100">100</progress>
+
+<label for="redshield">Red Shield:</label>
+<progress id="redshield" value="100" max="100">100</progress>
+
+</div>
+
+
+
+<div style = "position:relative; left:0px; top:-84px;"><h2 id="Blue health">Blue Health: 100</h2>
+
+  <label for="bluestamina">Blue Stamina:</label>
+<progress id="bluestamina" value="100" max="100">100</progress>
+
+<label for="blueattack">Blue Attack:</label>
+<progress id="blueattack" value="100" max="100">100</progress>
+
+<label for="blueshield">Blue Shield:</label>
+<progress id="blueshield" value="100" max="100">100</progress>
+</div>
+
+<script>
+var playerone;
+var playertwo;
+var wall;
+
+
+function startGame() {
+    playerone = new component(30, 30, "blue", 650, 190);
+    playertwo = new component(30, 30, "red", 220, 190);
+    wall = new component(30, 30, "green", 250, 190);
+    myGameArea.start();
+}
+
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 850;
+        this.canvas.height = 400;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('keydown', function (e) {
+            e.preventDefault();
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = (e.type == "keydown");
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = (e.type == "keydown");
+        })
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+
+function component(width, height, color, x, y, type) {
+
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.speed = 0;
+    this.angle = 0;
+    this.moveAngle = 0;
+    this.x = x;
+    this.y = y;
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.fillStyle = color;
+        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+        ctx.restore();
+    }
+    this.newPos = function() {
+        this.angle += this.moveAngle * Math.PI / 180;
+        this.x += this.speed * Math.sin(this.angle);
+        this.y -= this.speed * Math.cos(this.angle);
+    }
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    playerone.moveAngle = 0;
+    playerone.speed = 0;
+    if (myGameArea.keys && myGameArea.keys[37]) {playerone.moveAngle = -3; }
+    if (myGameArea.keys && myGameArea.keys[39]) {playerone.moveAngle = 3; }
+    if (myGameArea.keys && myGameArea.keys[38]) {playerone.speed= 5; }
+    if (myGameArea.keys && myGameArea.keys[40]) {playerone.speed= -5; }
+    if (myGameArea.keys && myGameArea.keys[17]) {playerone.speed= 10; }
+    playerone.newPos();
+    playerone.update();
+    
+    
+    playertwo.moveAngle = 0;
+    playertwo.speed = 0;
+    if (myGameArea.keys && myGameArea.keys[65]) {playertwo.moveAngle = -3; }
+    if (myGameArea.keys && myGameArea.keys[68]) {playertwo.moveAngle = 3; }
+    if (myGameArea.keys && myGameArea.keys[87]) {playertwo.speed= 5; }
+    if (myGameArea.keys && myGameArea.keys[83]) {playertwo.speed= -5; }
+    if (myGameArea.keys && myGameArea.keys[16]) {playertwo.speed= 10; }
+    playertwo.newPos();
+    playertwo.update();
+}
+</script>
+<script>
+
+
+
+window.addEventListener("keydown", function (e) {
+    if (e.keyCode === 17) {
+        bluestamina;
+    }
+});
+
+function bluestamina()
+document.getElementById("bluestamina").value= v1 + -5;}
+
+
+window.addEventListener("keydown", function (e) {
+    if (e.keyCode === 16) {
+        redstamina;
+    }
+});
+
+function redstamina()
+document.getElementById("redstamina").value= v1 + -5;}
+
+</script>
+</body>
